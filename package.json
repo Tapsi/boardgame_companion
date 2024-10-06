@@ -12,6 +12,7 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
+    "@mui/lab": "^6.0.0-beta.10",
     "@mui/material": "latest",
     "react": "latest",
     "react-dom": "latest"

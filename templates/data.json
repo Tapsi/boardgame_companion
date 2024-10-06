@@ -1,0 +1,278 @@
+{
+  "name": "Gloomhaven",
+  "values": {
+    "player_1_level": "0",
+    "player_1_xp": "0",
+    "player_1_hp": "10",
+    "player_1_gold": "0",
+    "player_1_class": "",
+    "player_2_level": "0",
+    "player_2_xp": "0",
+    "player_2_hp": "10",
+    "player_2_gold": "0",
+    "player_2_class": "",
+    "player_3_level": "0",
+    "player_3_xp": "0",
+    "player_3_hp": "10",
+    "player_3_gold": "0",
+    "player_3_class": "",
+    "player_4_level": "0",
+    "player_4_xp": "0",
+    "player_4_hp": "10",
+    "player_4_gold": "0",
+    "player_4_class": ""
+  },
+  "template": {
+    "type": "Tab",
+    "content": [
+      {
+        "title": "Battle",
+        "content": {
+          "type": "Container",
+          "content": {
+            "type": "StackN",
+            "times": 4,
+            "key": "playerID",
+            "content": {
+              "type": "Card",
+              "content": {
+                "name": "Spieler - $(playerID)",
+                "content": {
+                  "type": "Row",
+                  "content": [
+                    {
+                      "type": "Text",
+                      "content": "Class"
+                    },
+                    {
+                      "type": "Value",
+                      "content": {
+                        "id": "player_$(playerID)_class"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "title": "Group",
+        "content": {
+          "type": "Container",
+          "content": {
+            "type": "StackN",
+            "times": 4,
+            "key": "playerID",
+            "content": {
+              "type": "Card",
+              "content": {
+                "name": "Spieler - $(playerID)",
+                "content": {
+                  "type": "Stack",
+                  "content": [
+                    {
+                      "type": "Text",
+                      "content": "Name des Spielers"
+                    },
+                    {
+                      "type": "Select",
+                      "content": {
+                        "name": "Klasse",
+                        "target": "player_$(playerID)_class",
+                        "options": [
+                          "Barbar",
+                          "Tüftler",
+                          "Schurkin",
+                          "Spruchweberin"
+                        ]
+                      }
+                    },
+                    {
+                      "type": "Row",
+                      "content": [
+                        {
+                          "type": "Row",
+                          "content": [
+                            {
+                              "type": "Text",
+                              "content": "LVL"
+                            },
+                            {
+                              "type": "Value",
+                              "content": {
+                                "id": "player_$(playerID)_level"
+                              }
+                            },
+                            {
+                              "type": "PlusMinus",
+                              "content": {
+                                "id": "player_$(playerID)_level"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Row",
+                          "content": [
+                            {
+                              "type": "Text",
+                              "content": "XP"
+                            },
+                            {
+                              "type": "Value",
+                              "content": {
+                                "id": "player_$(playerID)_xp"
+                              }
+                            },
+                            {
+                              "type": "PlusMinus",
+                              "content": {
+                                "id": "player_$(playerID)_xp"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Row",
+                      "content": [
+                        {
+                          "type": "Text",
+                          "content": "HP"
+                        },
+                        {
+                          "type": "Value",
+                          "content": {
+                            "id": "player_$(playerID)_hp"
+                          }
+                        },
+                        {
+                          "type": "PlusMinus",
+                          "content": {
+                            "id": "player_$(playerID)_hp"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Row",
+                      "content": [
+                        {
+                          "type": "Text",
+                          "content": "Gold"
+                        },
+                        {
+                          "type": "Value",
+                          "content": {
+                            "id": "player_$(playerID)_gold"
+                          }
+                        },
+                        {
+                          "type": "PlusMinus",
+                          "content": {
+                            "id": "player_$(playerID)_gold"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Stack",
+                      "content": [
+                        {
+                          "type": "Text",
+                          "content": "Ausrüstung"
+                        },
+                        {
+                          "type": "Text",
+                          "content": "Kopf"
+                        },
+                        {
+                          "type": "Text",
+                          "content": "Brust"
+                        },
+                        {
+                          "type": "Text",
+                          "content": "Einhändig"
+                        },
+                        {
+                          "type": "Text",
+                          "content": "Zweihändig"
+                        },
+                        {
+                          "type": "Text",
+                          "content": "Fuß"
+                        },
+                        {
+                          "type": "Text",
+                          "content": "Beutel"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "title": "Enemies",
+        "content": {
+          "type": "Container",
+          "content": {
+            "type": "Text",
+            "content": "Gloomhaven Enemies"
+          }
+        }
+      },
+      {
+        "title": "Decks",
+        "content": {
+          "type": "Container",
+          "content": {
+            "type": "StackN",
+            "times": 4,
+            "key": "playerID",
+            "content": {
+              "type": "Deck",
+              "content": {
+                "id": "player_$(playerID)_action_modifier",
+                "name": "Action Modifier (Player $(playerID))",
+                "cards": [
+                  "-2",
+                  "-1",
+                  "-1",
+                  "-1",
+                  "+0",
+                  "+0",
+                  "+0",
+                  "+0",
+                  "+0",
+                  "+1",
+                  "+1",
+                  "+1",
+                  "+2",
+                  "2x",
+                  "🚫"
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "title": "Characters",
+        "content": {
+          "type": "Container",
+          "content": {
+            "type": "Stack",
+            "content": []
+          }
+        }
+      }
+    ]
+  }
+}
