@@ -1,13 +1,22 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
-import { useState } from "react"
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import { useState } from "react";
 
-export default function CompanionActionSelectAndClaim(props) {
-  const { name, options } = props
-  const [value, setValue] = useState("")
+export default function CompanionActionSelectAndClaim(props: {
+  name: string;
+  options: string[];
+}) {
+  const { name, options } = props;
+  const [value, setValue] = useState("");
 
-  const handleChange = event => {
-    setValue(event.target.value)
-  }
+  const handleChange = (event: SelectChangeEvent) => {
+    setValue(event.target.value);
+  };
 
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -26,5 +35,5 @@ export default function CompanionActionSelectAndClaim(props) {
         ))}
       </Select>
     </FormControl>
-  )
+  );
 }

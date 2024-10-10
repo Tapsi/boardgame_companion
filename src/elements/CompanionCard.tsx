@@ -1,19 +1,15 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Typography
-} from "@mui/material"
+import { Button, Card, CardActions, CardContent, Container, Typography } from "@mui/material";
+import { ReactElement } from "react";
 
-export default function CompanionCard(props) {
-  const { name, content } = props
+
+export default function CompanionCard(props: { name: string, content: ReactElement}) {
+  const {name, content} = props;
 
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <Typography variant="h5" component="div">
-          {name}
+          { name }
         </Typography>
 
         {content}
@@ -22,5 +18,5 @@ export default function CompanionCard(props) {
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
-  )
+  );
 }

@@ -1,13 +1,23 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
-import { useInstanceData } from "../InstanceData"
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import { useInstanceData } from "../InstanceData";
 
-export default function CompanionActionSelect(props) {
-  const { name, target, options } = props
-  const { value, update } = useInstanceData(target)
+export default function CompanionActionSelect(props: {
+  name: string;
+  target: string;
+  options: string[];
+}) {
+  const { name, target, options } = props;
+  const {value, update} = useInstanceData(target);
 
-  const handleChange = event => {
-    update(event.target.value)
-  }
+  const handleChange = (event: SelectChangeEvent) => {
+    update(event.target.value);
+  };
 
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -26,5 +36,5 @@ export default function CompanionActionSelect(props) {
         ))}
       </Select>
     </FormControl>
-  )
+  );
 }
