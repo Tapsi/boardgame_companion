@@ -1,6 +1,5 @@
 {
   "name": "material-ui-vite-ts",
-  "private": true,
   "version": "5.1.0",
   "type": "module",
   "scripts": {
