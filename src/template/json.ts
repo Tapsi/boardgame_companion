@@ -7,6 +7,37 @@ export const getProperty = <T,>(obj: object, property: string, asserter: TypeChe
   return asserter(value);
 }
 
+export const or = <T,S>(a: TypeChecker<T>, b: TypeChecker<S>): (value: any) => T | S  => {
+  return (value) => {
+    try {
+      return a(value)
+    } catch (_) {
+      return b(value)
+    }
+  }
+}
+
+export const isUndefined = (value: any): undefined => {
+  if (typeof value !== "undefined") {
+    throw new Error(`must be undefined`);
+  }
+  return value;
+}
+
+export const isBoolean = (value: any): boolean => {
+  if (typeof value !== "boolean") {
+    throw new Error(`must be a boolean`);
+  }
+  return value;
+}
+
+export const isNumber = (value: any): number => {
+  if (typeof value !== "number") {
+    throw new Error(`must be a number`);
+  }
+  return value;
+}
+
 export const isString = (value: any): string => {
   if (typeof value !== "string") {
     throw new Error(`must be a string`);

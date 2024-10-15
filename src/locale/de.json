@@ -1,0 +1,8 @@
+{
+  "action.shuffle": "Karten mischen",
+  "action.draw.card": "Karte ziehen",
+  "action.deck.cards": "Karten",
+  "action.deck.drawnCard": "Gezogene Karte",
+  "action.deck.drawnCards.show": "Gezogene Karten",
+  "action.deck.moveCard.top": "Oberste Karte in anderes Deck legen"
+}

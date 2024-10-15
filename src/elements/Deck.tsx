@@ -6,21 +6,36 @@ import {
   CardContent,
   Dialog,
   DialogTitle,
+  Divider,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
   Typography,
 } from "@mui/material";
-import { useInstanceDeck } from "../model/InstanceData";
+import { useDeckIds, useInstanceDeck } from "../model/storageHooks";
 import { useMemo, useState } from "react";
 import { TemplateData, TemplateRender } from "../template/loader";
-import { getProperty, isString } from "../template/json";
+import {
+  getProperty,
+  isBoolean,
+  isString,
+  isUndefined,
+  or,
+} from "../template/json";
+import { FormattedMessage } from "react-intl";
 
 export const Deck = (render: TemplateRender, data: TemplateData) => {
-  const reference = useMemo(() => getProperty(data, "reference", isString), [data]);
+  const reference = useMemo(
+    () => getProperty(data, "reference", isString),
+    [data]
+  );
   const title = useMemo(() => getProperty(data, "title", isString), [data]);
-  
+  const onlyView = useMemo(
+    () => getProperty(data, "onlyView", or(isBoolean, isUndefined)),
+    [data]
+  );
+
   const { cards, drawnCards, lastDrawnCard, shuffle, drawCard, moveCardTo } =
     useInstanceDeck(reference);
 
@@ -35,7 +50,26 @@ export const Deck = (render: TemplateRender, data: TemplateData) => {
     setTargetDeckDialogOpen(false);
   };
 
-  const targetDecks = ["player_1_modifier","disposed_cards",].filter((deckId) => deckId !== reference);
+  const allDeckIds = useDeckIds();
+  const targetDecks = allDeckIds.filter(key => key !== reference);
+
+  if (onlyView) {
+    return (
+      <Card sx={{ width: 300, height: 300 }}>
+        <CardContent>
+          <Typography variant="body1" style={{ alignSelf: "center" }}>
+            { title }
+          </Typography>
+
+          <Divider />
+
+          <Typography variant="body1" style={{ alignSelf: "center" }}>
+            {lastDrawnCard?.value ?? ""}
+          </Typography>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     <Card sx={{ minWidth: 275 }}>
@@ -48,18 +82,31 @@ export const Deck = (render: TemplateRender, data: TemplateData) => {
           ({reference})
         </Typography>
 
-        <Typography variant="body2">
-          Drawn Card : {lastDrawnCard?.value ?? ""}
-        </Typography>
+        <Card sx={{ width: 200, height: 300 }}>
+          <CardContent>
+            <Typography variant="body1" style={{ alignSelf: "center" }}>
+              <FormattedMessage id="action.deck.drawnCard" />
+            </Typography>
+
+            <Divider />
+
+            <Typography variant="body1" style={{ alignSelf: "center" }}>
+              {lastDrawnCard?.value ?? ""}
+            </Typography>
+          </CardContent>
+        </Card>
       </CardContent>
+
+      <Divider />
+
       <CardActions>
         <Badge badgeContent={cards.length} color="primary">
           <Button disabled={cards.length === 0} onClick={drawCard} size="small">
-            Draw Card
+            <FormattedMessage id="action.draw.card" />
           </Button>
         </Badge>
         <Button onClick={shuffle} size="small">
-          Shuffle Deck
+          <FormattedMessage id="action.shuffle" />
         </Button>
         <Badge badgeContent={drawnCards.length} color="primary">
           <Button
@@ -67,7 +114,7 @@ export const Deck = (render: TemplateRender, data: TemplateData) => {
             onClick={() => setDrawnCardsOpen(true)}
             size="small"
           >
-            Show Drawn Cards
+            <FormattedMessage id="action.deck.drawnCards.show" />
           </Button>
         </Badge>
 
@@ -76,7 +123,7 @@ export const Deck = (render: TemplateRender, data: TemplateData) => {
           onClick={() => setTargetDeckDialogOpen(true)}
           size="small"
         >
-          Move top card to Deck
+          <FormattedMessage id="action.deck.moveCard.top" />
         </Button>
       </CardActions>
 
@@ -118,4 +165,4 @@ export const Deck = (render: TemplateRender, data: TemplateData) => {
       </Dialog>
     </Card>
   );
-}
+};

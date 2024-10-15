@@ -5,7 +5,7 @@ import {
   Select as MuiSelect,
   SelectChangeEvent,
 } from "@mui/material";
-import { useInstanceValues } from "../model/InstanceData";
+import { useInstanceValues } from "../model/storageHooks";
 import { TemplateData, TemplateRender } from "../template/loader";
 import { useMemo } from "react";
 import { getProperty, isArrayOf, isString } from "../template/json";
