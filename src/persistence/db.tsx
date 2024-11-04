@@ -16,16 +16,17 @@ const formatBytes = (bytes: number, decimals = 2) => {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
 }
 
+export type TemplateSchema = {
+  name: string;
+  values: string;
+  decks: string;
+  structure: string;
+}
 
 interface BoardgameCompanionSchema extends DBSchema {
   templates: {
     key: string;
-    value: {
-      name: string;
-      values: string;
-      decks: string;
-      structure: string;
-    };
+    value: TemplateSchema;
   };
 }
 
@@ -79,7 +80,7 @@ export const useTemplatesStore = () => {
       if (!database) return [];
       return database.getAllKeys(STORE_TEMPLATES);
     },
-    update: (data: object) => {
+    update: (data: TemplateSchema) => {
       if (!database) throw new Error("tempaltes store is not ready");
       database.put(STORE_TEMPLATES, data);
     }

@@ -30,5 +30,4 @@ const render = () => {
   );
 }
 
-await bootup();
-render();
+bootup().then(() => render());

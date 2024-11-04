@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useState } from "react";
 import { isNumber, isObject, isString } from "./json";
-import { ENTITY_STATUS, useTemplatesStore } from "../persistence/db";
+import { ENTITY_STATUS, TemplateSchema, useTemplatesStore } from "../persistence/db";
 import { TemplateComponents, TemplateData, TemplateRender } from "./model";
 
 export const renderComponent: TemplateRender = (data: TemplateData): ReactElement => {
@@ -43,14 +43,14 @@ export const useTemplate = (id: string) => {
 
   useEffect(() => {
     if (!data) {
-      get(id).then(setData);
+      get(id)?.then(setData);
     }
   }, [id]);
 
   return {
     data,
-    status: ENTITY_STATUS.LOADING,
-    update: (data: any) => {
+    status: data === null ? ENTITY_STATUS.LOADING : ENTITY_STATUS.OK,
+    update: (data: TemplateSchema) => {
       return update(data);
     }
   }

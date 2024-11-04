@@ -1,4 +1,4 @@
-import { TemplateData } from "./loader";
+import { TemplateData } from "./model";
 
 type TypeChecker<T> = (value: any) => T;
 
