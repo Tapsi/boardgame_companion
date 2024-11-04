@@ -1,5 +1,5 @@
 import { Container as MuiContainer} from "@mui/material";
-import { TemplateComponent, TemplateData, TemplateRender } from "../template/loader";
+import { TemplateComponent, TemplateData, TemplateRender } from "../template/model";
 import { useMemo } from "react";
 import { getProperty, isTemplate } from "../template/json";
 

@@ -1,7 +1,7 @@
 import { Card, CardContent, Divider, Stack, Typography } from "@mui/material";
 import { useInstanceDeck } from "../model/storageHooks";
 import { useMemo } from "react";
-import { TemplateData, TemplateRender } from "../template/loader";
+import { TemplateData, TemplateRender } from "../template/model";
 import { getProperty, isArrayOf, isString } from "../template/json";
 import { FormattedMessage } from "react-intl";
 

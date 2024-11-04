@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { useInstanceValues } from "../model/storageHooks";
-import { TemplateComponent, TemplateData, TemplateRender } from "../template/loader";
+import { TemplateComponent, TemplateData, TemplateRender } from "../template/model";
 import { useMemo } from "react";
 import { getProperty, isString } from "../template/json";
 

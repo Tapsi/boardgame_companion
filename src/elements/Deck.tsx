@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { useDeckIds, useInstanceDeck } from "../model/storageHooks";
 import { useMemo, useState } from "react";
-import { TemplateData, TemplateRender } from "../template/loader";
+import { TemplateData, TemplateRender } from "../template/model";
 import {
   getProperty,
   isBoolean,

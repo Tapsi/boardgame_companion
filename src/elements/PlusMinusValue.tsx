@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useInstanceValues } from "../model/storageHooks";
-import { TemplateData, TemplateRender } from "../template/loader";
+import { TemplateData, TemplateRender } from "../template/model";
 import { getProperty, isString } from "../template/json";
 import { useMemo } from "react";
 

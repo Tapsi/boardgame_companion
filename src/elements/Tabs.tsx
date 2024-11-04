@@ -1,7 +1,7 @@
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, Tab } from "@mui/material";
 import React, { useMemo, useState } from "react";
-import { TemplateComponent, TemplateData, TemplateRender } from "../template/loader";
+import { TemplateComponent, TemplateData, TemplateRender } from "../template/model";
 import { getProperty, isArrayOf, isObject, isString, isTemplate } from "../template/json";
 
 const isTabModel = (value: any) => {

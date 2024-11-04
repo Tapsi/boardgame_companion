@@ -69,3 +69,9 @@ export const isArrayOf = <T,>(contentCheck: TypeChecker<T>): (value: any) => T[]
     return value;
   }
 }
+
+export const replaceTagInObject = (id: string, targetValue: string, data: object) => {
+  const stringified = JSON.stringify(data)
+  const replaced = stringified.replaceAll(`\$\{${id}\}`, targetValue)
+  return JSON.parse(replaced);
+} 

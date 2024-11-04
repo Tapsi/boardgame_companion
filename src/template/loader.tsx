@@ -1,40 +1,7 @@
-import { ReactElement } from "react";
-import { Value } from "../elements/Value";
-import { Text } from "../elements/Text";
-import { Tabs } from "../elements/Tabs";
-import { Container } from "../elements/Container";
-import { Column, Row } from "../elements/Stack";
-import { Select } from "../elements/Select";
-import { PlusMinus } from "../elements/PlusMinusValue";
-import { Panel } from "../elements/Panel";
-import { Deck } from "../elements/Deck";
+import { ReactElement, useEffect, useState } from "react";
 import { isNumber, isObject, isString } from "./json";
-import { Decks } from "../elements/Decks";
-
-type MultipyCommand = { times: number, property: string, index: string }
-
-export type TemplateData = object & { type?: string, $multiply?: MultipyCommand  };
-
-export type TemplateRender =  (data: TemplateData) => ReactElement;
-
-export type TemplateComponent = (
-  renderChildren: (data: TemplateData) => ReactElement,
-  model: TemplateData
-) => ReactElement;
-
-const TemplateComponents: { [key: string]: TemplateComponent} = {
-  "TEXT": Text,
-  "VALUE": Value,
-  "TABS": Tabs,
-  "CONTAINER": Container,
-  "COLUMN": Column,
-  "ROW": Row,
-  "SELECT": Select,
-  "PLUS_MINUS": PlusMinus,
-  "PANEL": Panel,
-  "DECK": Deck,
-  "DECKS": Decks
-};
+import { ENTITY_STATUS, useTemplatesStore } from "../persistence/db";
+import { TemplateComponents, TemplateData, TemplateRender } from "./model";
 
 export const renderComponent: TemplateRender = (data: TemplateData): ReactElement => {
   const type = data.type;
@@ -68,3 +35,23 @@ export const renderComponent: TemplateRender = (data: TemplateData): ReactElemen
 
   return TemplateComponents[componentType](renderComponent, data);
 };
+
+
+export const useTemplate = (id: string) => {
+  const { update, get } = useTemplatesStore();
+  const [ data, setData ] = useState<any|null>(null); 
+
+  useEffect(() => {
+    if (!data) {
+      get(id).then(setData);
+    }
+  }, [id]);
+
+  return {
+    data,
+    status: ENTITY_STATUS.LOADING,
+    update: (data: any) => {
+      return update(data);
+    }
+  }
+}

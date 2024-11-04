@@ -13,13 +13,11 @@ import {
   TemplateComponent,
   TemplateData,
   TemplateRender,
-} from "../template/loader";
+} from "../template/model";
 import {
   getProperty,
   isString,
   isTemplate,
-  isUndefined,
-  or,
 } from "../template/json";
 
 export const Panel: TemplateComponent = (

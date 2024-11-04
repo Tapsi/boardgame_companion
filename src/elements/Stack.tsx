@@ -3,7 +3,7 @@ import {
   TemplateComponent,
   TemplateData,
   TemplateRender,
-} from "../template/loader";
+} from "../template/model";
 import { getProperty, isArrayOf, isTemplate } from "../template/json";
 import { useMemo } from "react";
 

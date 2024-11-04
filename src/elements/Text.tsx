@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { getProperty, isString } from "../template/json";
 import { useMemo } from "react";
-import { TemplateComponent, TemplateData, TemplateRender } from "../template/loader";
+import { TemplateComponent, TemplateData, TemplateRender } from "../template/model";
 
 export const Text: TemplateComponent = (
   _: TemplateRender,

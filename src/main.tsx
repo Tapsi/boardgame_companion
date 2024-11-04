@@ -9,17 +9,26 @@ import { IntlProvider } from "react-intl";
 import lang_de from "./locale/de.json";
 import { addDecks as addDecksToDeckStorage } from "./model/deck";
 import { updateValues as updateValueStorage } from "./model/values";
+import { initializeDatabase } from "./persistence/db";
 
-updateValueStorage(data.values);
-addDecksToDeckStorage(data.decks);
+const bootup = async () => {
+  updateValueStorage(data.values);
+  addDecksToDeckStorage(data.decks);
+  await initializeDatabase();
+}
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <IntlProvider messages={lang_de} locale="de" defaultLocale="en">
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </IntlProvider>
-  </React.StrictMode>
-);
+const render = () => {
+  ReactDOM.createRoot(document.getElementById("root")!).render(
+    <React.StrictMode>
+      <IntlProvider messages={lang_de} locale="de" defaultLocale="en">
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </IntlProvider>
+    </React.StrictMode>
+  );
+}
+
+await bootup();
+render();
