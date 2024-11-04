@@ -13,7 +13,7 @@ const emitChange = () => {
 
 const toggleMode = () => {
   if (appMode === "LIVE") appMode = "TEMPLATE";
-  else if (appMode === "TEMPLATE") appMode = "TEMPLATE";
+  else if (appMode === "TEMPLATE") appMode = "LIVE";
   emitChange();
 }
 

@@ -12,6 +12,10 @@ import {
   shuffleDeck,
 } from "./deck";
 
+export const useInstanceValueKeys = () => {
+  return { ids: Object.keys(getValueStorageData()) };
+};
+
 export const useInstanceValues = (id: string) => {
   const value = useSyncExternalStore(subscribeToValueStore, () =>
     Reflect.get(getValueStorageData(), id)
@@ -39,4 +43,4 @@ export const useInstanceDeck = (id: string) => {
   };
 };
 
-export const useDeckIds = () => [...getDeckStorageData().keys()]
+export const useDeckIds = () => [...getDeckStorageData().keys()];
